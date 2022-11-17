@@ -58,15 +58,33 @@ struct Arrow: Shape {
         return path
     }
     
-    
 }
 
+struct OlympicRings: Shape {
+    func path(in rect: CGRect) -> Path {
+        
+        var path = Path()
+        
+        for i in 0...4 {
+            if i <= 2 {
+                path.addEllipse(in: CGRect(x: 50 + i * 170, y: 50, width: 150, height: 150))
+            } else {
+                path.addEllipse(in: CGRect(x: 135 + (i - 3) * 170, y: 135, width: 150, height: 150))
+            }
+        }
+        
+        return path
+        
+    }
+    
+}
 
 struct ContentView: View {
     var body: some View {
 //        Diagonal()
 //        Diamond()
-        Arrow()
+//        Arrow()
+        OlympicRings()
             .stroke()
     }
 }
