@@ -41,12 +41,32 @@ struct Diamond: Shape {
 
 }
 
+struct Arrow: Shape {
+    func path(in rect: CGRect) -> Path {
+        
+        var path = Path ()
+        
+        path.move(to: CGPoint(x: 0, y: rect.maxY/3))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY / 3))
+        path.addLine(to: CGPoint(x: rect.midX, y: 0))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY / 3 * 2))
+        path.addLine(to: CGPoint(x: 0, y: rect.maxY / 3 * 2))
+        path.addLine(to: CGPoint(x: 0, y: rect.maxY / 3))
+        
+        return path
+    }
+    
+    
+}
+
 
 struct ContentView: View {
     var body: some View {
 //        Diagonal()
-//            .stroke()
-        Diamond()
+//        Diamond()
+        Arrow()
             .stroke()
     }
 }
