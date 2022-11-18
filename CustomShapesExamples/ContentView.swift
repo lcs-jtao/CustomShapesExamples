@@ -140,10 +140,10 @@ struct ContentView: View {
 //        Diagonal()
 //        Diamond()
 //        Arrow()
-//        OlympicRings()
-        StarPattern()
-            .stroke()
-            .frame(width: 300, height: 300)
+        OlympicRings()
+//        StarPattern()
+            .stroke(style: StrokeStyle(lineWidth: 10))
+//            .frame(width: 300, height: 300)
     }
 }
 
