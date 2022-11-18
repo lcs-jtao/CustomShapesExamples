@@ -79,13 +79,71 @@ struct OlympicRings: Shape {
     
 }
 
+struct StarPattern: Shape {
+    func path(in rect: CGRect) -> Path {
+        
+        var path = Path ()
+        
+        let gridXCoordinate = rect.maxX / 4
+        let gridYCoordinate = rect.maxY / 4
+        
+        path.move(to: CGPoint(x: gridXCoordinate, y: gridYCoordinate))
+        // MARK: Top Pieces
+        // First piece (from left)
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.midY))
+        path.addLine(to: CGPoint(x: gridXCoordinate, y: gridYCoordinate * 2))
+        path.addLine(to: CGPoint(x: 0, y: gridYCoordinate))
+        path.addLine(to: CGPoint(x: gridXCoordinate, y: gridYCoordinate))
+        // Second piece
+        path.addLine(to: CGPoint(x: gridXCoordinate, y: 0))
+        path.addLine(to: CGPoint(x: gridXCoordinate * 2, y: gridYCoordinate))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.midY))
+        // Third piece
+        path.move(to: CGPoint(x: gridXCoordinate * 2, y: gridYCoordinate))
+        path.addLine(to: CGPoint(x: gridXCoordinate * 3, y: 0))
+        path.addLine(to: CGPoint(x: gridXCoordinate * 3, y: gridYCoordinate))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.midY))
+        // Fourth piece
+        path.move(to: CGPoint(x: gridXCoordinate * 3, y: gridYCoordinate))
+        path.addLine(to: CGPoint(x: rect.maxX, y: gridYCoordinate))
+        path.addLine(to: CGPoint(x: gridXCoordinate * 3, y: gridYCoordinate * 2))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.midY))
+        // MARK: Bottom Pieces
+        // First piece (from right)
+        path.move(to: CGPoint(x: gridXCoordinate * 3, y: gridYCoordinate * 2))
+        path.addLine(to: CGPoint(x: rect.maxX, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: gridXCoordinate * 3, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.midY))
+        // Second piece
+        path.move(to: CGPoint(x: gridXCoordinate * 3, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: gridXCoordinate * 3, y: rect.maxY))
+        path.addLine(to: CGPoint(x: gridXCoordinate * 2, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.midY))
+        // Third piece
+        path.move(to: CGPoint(x: gridXCoordinate * 2, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: gridXCoordinate, y: rect.maxY))
+        path.addLine(to: CGPoint(x: gridXCoordinate, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.midY))
+        // Fourth piece
+        path.move(to: CGPoint(x: gridXCoordinate, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: 0, y: gridYCoordinate * 3))
+        path.addLine(to: CGPoint(x: gridXCoordinate, y: gridYCoordinate * 2))
+        
+        return path
+        
+    }
+    
+}
+
 struct ContentView: View {
     var body: some View {
 //        Diagonal()
 //        Diamond()
 //        Arrow()
-        OlympicRings()
+//        OlympicRings()
+        StarPattern()
             .stroke()
+            .frame(width: 300, height: 300)
     }
 }
 
